@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+}
+
+.play-area {
+  display: grid;
+  width: 300px;
+  height: 300px;
+  grid-template-columns: auto auto auto;
+}
+
+.block {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  border: 3px solid black;
+  transition: background 0.2s ease-in-out;
+}
+
+.block:hover {
+  cursor: pointer;
+  background: #eeffee;
+}
+
+#block_0,
+#block_1,
+#block_2 {
+  border-top: none;
+}
+
+#block_0,
+#block_3,
+#block_6 {
+  border-left: none;
+}
+
+#block_6,
+#block_7,
+#block_8 {
+  border-bottom: none;
+}
+
+#block_2,
+#block_5,
+#block_8 {
+  border-right: none;
+}
+
+h1 {
+  padding: 20px 0;
+}
+
+h2 {
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  margin-bottom: 0.7em;
+}
+
+button {
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-right: 0.5em;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #f03a17;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+}
+
+button:hover {
+  border-bottom: none;
+  border-right: none;
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+}
+
+h2,
+h4,
+button {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+#results {
+  display: none;
+  margin-top: 2em;
+}
