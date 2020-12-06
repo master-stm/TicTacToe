@@ -34,13 +34,29 @@ let draw = () => {
 
 }
 
+let cpuMove = () => {
+    let randTd = Math.floor(Math.random() * tdList.length)
+    try {
+        if (tdList[randTd].innerText === p1 || tdList[randTd].innerText === p2) {
+            cpuMove()
+        } else if (tdList[randTd].innerText === '') {
+            tdList[randTd].innerText = p2
+            playerTurn = !playerTurn
+        }
+    } catch (error) {
+        document.querySelector('#results h2').innerText = `It's a Draw!`
+        document.querySelector('#results').style.display = "block";
+    }
+}
 
 tdList.forEach(td => {
-    td.addEventListener('click', () => {
+    td.addEventListener('mouseup', () => {
         let mark = ''
         playerTurn ? mark = p1 : mark = p2
         td.innerText = mark
         playerTurn = !playerTurn
+
+        playerTurn === false && cpuMove()
 
         draw()
         if (!checkWinner(mark) && sum === 20) {
