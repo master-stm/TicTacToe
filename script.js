@@ -35,7 +35,7 @@ let draw = () => {
 }
 
 
-tdList.forEach((td, i) => {
+tdList.forEach(td => {
     td.addEventListener('click', () => {
         let mark = ''
         playerTurn ? mark = p1 : mark = p2
