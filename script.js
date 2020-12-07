@@ -1,7 +1,9 @@
 let tdList = document.querySelectorAll('.block')
 let playerTurn = true
-let p1 = '🙂'
-let p2 = "🙃"
+let p1 = '❌'
+let p2 = "⭕"
+
+
 
 let clearFields = () => {
     document.location.reload()
@@ -44,31 +46,47 @@ let cpuMove = () => {
             playerTurn = !playerTurn
         }
     } catch (error) {
-        document.querySelector('#results h2').innerText = `It's a Draw!`
-        document.querySelector('#results').style.display = "block";
+        check(p1)
+        check(p2)
+        draw()
     }
+}
+
+let check = (mark) => {
+        if (checkWinner(mark)) {
+            document.querySelector('#results h2').innerText = `Player with ${mark} won!`
+            document.querySelector('#results').style.display = "block";
+            return
+        }
+
+        if (!checkWinner(mark) && sum === 20) {
+            document.querySelector('#results h2').innerText = `It's a Draw!`
+            document.querySelector('#results').style.display = "block";
+            return
+
+        }
 }
 
 tdList.forEach(td => {
     td.addEventListener('mouseup', () => {
         let mark = ''
         playerTurn ? mark = p1 : mark = p2
+        
         td.innerText = mark
+        check(p1)
+        draw()
         playerTurn = !playerTurn
 
-        playerTurn === false && cpuMove()
+        
 
-        draw()
-        if (!checkWinner(mark) && sum === 20) {
-            document.querySelector('#results h2').innerText = `It's a Draw!`
-            document.querySelector('#results').style.display = "block";
+        if (playerTurn === false){
+            cpuMove()
+            check(p2)
+            draw()
+        } 
 
-        }
-        if (checkWinner(mark)) {
-            document.querySelector('#results h2').innerText = `Player with ${mark} won!`
-            document.querySelector('#results').style.display = "block";
-            return
-        }
+        
+        
 
     }, { once: true })
 })
